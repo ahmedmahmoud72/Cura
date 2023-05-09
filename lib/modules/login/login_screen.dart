@@ -1,10 +1,14 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:virtual_hospital_ward_app/layout/App_layout.dart';
 import 'package:virtual_hospital_ward_app/modules/login/cubit/cubit.dart';
 import 'package:virtual_hospital_ward_app/modules/login/cubit/states.dart';
 import 'package:virtual_hospital_ward_app/shared/components/widgets/main_button.dart';
+import 'package:virtual_hospital_ward_app/shared/components/widgets/my_toast.dart';
+import '../../network/local/cache_helper.dart';
 import '../../shared/components/general_components.dart';
+
 class LoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -19,7 +23,34 @@ class LoginScreen extends StatelessWidget {
     return BlocProvider(
         create: (BuildContext context) => AppLoginCubit(),
         child: BlocConsumer<AppLoginCubit, AppLoginStates>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            try {
+              if (state is AppLoginSuccessState) {
+                if (state.loginModel.status) {
+                  DisplayMotionToast(
+                    state: ResponseState.success,
+                    message: state.loginModel.message,
+                    context: context,
+                  ).displayMotionToast(ResponseState.success);
+
+                  CacheHelper.saveData(key: 'token', value: state.loginModel
+                      .data!.token,).then((value)
+                  {
+                    navigateToAndKill(context, const AppLayout());
+                    print(CacheHelper.getData(key:'token'));
+                  });
+                } else {
+                  DisplayMotionToast(
+                    state: ResponseState.error,
+                    message: state.loginModel.message,
+                    context: context,
+                  ).displayMotionToast(ResponseState.error);
+                }
+              }
+            } catch (error) {
+              debugPrint(error.toString());
+            }
+          },
           builder: (context, state) {
             return Scaffold(
               body: Padding(
@@ -58,7 +89,8 @@ class LoginScreen extends StatelessWidget {
                               height: 20.0,
                             ),
                             DefaultTFF(
-                              obscureText: AppLoginCubit.get(context).isPassword,
+                              obscureText:
+                                  AppLoginCubit.get(context).isPassword,
                               labelText: 'Password',
                               keyboardType: TextInputType.visiblePassword,
                               controller: passwordController,
@@ -71,9 +103,7 @@ class LoginScreen extends StatelessWidget {
                                 }
                               },
                               prefixIcon: Icons.lock_outline,
-                              suffixIcon: AppLoginCubit
-                                  .get(context)
-                                  .suffix,
+                              suffixIcon: AppLoginCubit.get(context).suffix,
                               suffixPressed: () {
                                 AppLoginCubit.get(context)
                                     .changePasswordVisibility();
@@ -93,16 +123,17 @@ class LoginScreen extends StatelessWidget {
                                     child: CircularProgressIndicator()),
                                 condition: state is! AppLoginLoadingState,
                                 builder: (context) => MainButton(
-                                    onTap: () {
-                                      if (formKey.currentState!.validate()) {
-                                        AppLoginCubit.get(context).patientLogin(
-                                          email: emailController.text,
-                                          password: passwordController.text,
-                                        );
-                                      }
-                                    },
-                                    text: 'Login',
-                                )),
+                                      onTap: () {
+                                        if (formKey.currentState!.validate()) {
+                                          AppLoginCubit.get(context)
+                                              .patientLogin(
+                                            email: emailController.text,
+                                            password: passwordController.text,
+                                          );
+                                        }
+                                      },
+                                      text: 'Login',
+                                    )),
                           ]),
                     ),
                   ),

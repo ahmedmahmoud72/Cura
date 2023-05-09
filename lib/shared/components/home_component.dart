@@ -19,38 +19,41 @@ class HomeComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 351,
       height: 120,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: color,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: const Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: ListTile(
-          title: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: Text(
-              title,
-              style: GoogleFonts.notoSans(
-                  fontWeight: FontWeight.bold
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: color,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: ListTile(
+            title: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: Text(
+                title,
+                style: GoogleFonts.notoSans(fontWeight: FontWeight.bold),
               ),
             ),
+            subtitle: Text(
+              subTitle,
+              style: GoogleFonts.notoSans(),
+            ),
+            trailing: Image.asset(image),
+            onTap: () {
+              function!();
+            },
           ),
-          subtitle: Text(subTitle, style: GoogleFonts.notoSans(),),
-          trailing: Image.asset(image),
-          onTap: () {
-            function!();
-          },
         ),
       ),
     );

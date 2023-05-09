@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:virtual_hospital_ward_app/models/login_model.dart';
 import 'package:virtual_hospital_ward_app/modules/login/cubit/states.dart';
 import 'package:virtual_hospital_ward_app/shared/constants.dart';
 import '../../../network/remote/dio_helper.dart';
@@ -8,6 +9,7 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
   AppLoginCubit() : super(AppLoginInitialState());
 
   static AppLoginCubit get(context) => BlocProvider.of(context);
+  late LoginModel loginModel;
 
   void patientLogin({
     required String email,
@@ -21,8 +23,11 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
         'password': password,
       },
     ).then((value) {
-      debugPrint(value.toString());
-      emit(AppLoginSuccessState());
+      loginModel = LoginModel.fromJson(value.data);
+
+      debugPrint(loginModel.message);
+
+      emit(AppLoginSuccessState(loginModel));
     }).catchError((error) {
       emit(AppLoginErrorState(error.toString()));
       debugPrint(error.toString());
@@ -33,9 +38,9 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
   bool isPassword = true;
 
   void changePasswordVisibility() {
-    isPassword =! isPassword;
-    suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    isPassword = !isPassword;
+    suffix =
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(ShopChangePasswordVisibilityState());
-
   }
 }

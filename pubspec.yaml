@@ -19,6 +19,8 @@ dependencies:
   dio: ^5.1.2
   conditional_builder_null_safety: ^0.0.6
   bloc: ^8.1.1
+  motion_toast: ^2.6.7
+  fluttericon: ^2.0.0
 
 
 
@@ -38,9 +40,7 @@ flutter:
 
 
   assets:
-    - assets/images/
-    - assets/images/emotions/
-    - assets/images/readings/
+    - assets/
 
   fonts:
     - family: MyFlutterApp

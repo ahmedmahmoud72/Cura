@@ -1,30 +1,41 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:virtual_hospital_ward_app/layout/cubit/cubit.dart';
 import 'package:virtual_hospital_ward_app/modules/login/login_screen.dart';
+import 'package:virtual_hospital_ward_app/network/local/cache_helper.dart';
 import 'package:virtual_hospital_ward_app/shared/bloc_observer.dart';
 import 'package:virtual_hospital_ward_app/shared/constants.dart';
-
+import 'layout/App_layout.dart';
 import 'network/remote/dio_helper.dart';
 
-void main() {
+main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  DioHelper.init();
+  await DioHelper.init();
+  await CacheHelper.init();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp
+
+  ({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Cura App',
-      theme: ThemeData(
-        primarySwatch: AppColors.mainColor,
+    return BlocProvider(
+      create: (context) => AppCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Cura App',
+        theme: ThemeData(
+          primarySwatch: AppColors.mainColor,
+        ),
+        home: CacheHelper.getData(key: 'token') != null
+            ? const AppLayout()
+            : LoginScreen(),
       ),
-      home: LoginScreen(),
     );
   }
 }

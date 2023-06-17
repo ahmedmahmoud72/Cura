@@ -26,26 +26,26 @@ class LoginScreen extends StatelessWidget {
           listener: (context, state) {
             try {
               if (state is AppLoginSuccessState) {
-                if (state.loginModel.status) {
-                  DisplayMotionToast(
-                    state: ResponseState.success,
-                    message: state.loginModel.message,
-                    context: context,
-                  ).displayMotionToast(ResponseState.success);
+                DisplayMotionToast(
+                  state: ResponseState.success,
+                  message: "Login Successfully",
+                  context: context,
+                ).displayMotionToast(ResponseState.success);
 
-                  CacheHelper.saveData(key: 'token', value: state.loginModel
-                      .data!.token,).then((value)
-                  {
-                    navigateToAndKill(context, const AppLayout());
-                    print(CacheHelper.getData(key:'token'));
-                  });
-                } else {
-                  DisplayMotionToast(
-                    state: ResponseState.error,
-                    message: state.loginModel.message,
-                    context: context,
-                  ).displayMotionToast(ResponseState.error);
-                }
+                final token = state.loginModel.token;
+                CacheHelper.saveData(
+                  key: 'token',
+                  value: token,
+                ).then((value) {
+                  navigateToAndKill(context, const AppLayout());
+                  print(CacheHelper.getData(key: 'token'));
+                });
+              } else if (state is AppLoginErrorState) {
+                DisplayMotionToast(
+                  state: ResponseState.error,
+                  message: "Incorrect Password",
+                  context: context,
+                ).displayMotionToast(ResponseState.error);
               }
             } catch (error) {
               debugPrint(error.toString());

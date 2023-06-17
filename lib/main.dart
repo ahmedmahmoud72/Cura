@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:virtual_hospital_ward_app/layout/cubit/cubit.dart';
@@ -18,14 +17,16 @@ main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp
-
-  ({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit(),
+      create: (context) => AppCubit()
+        ..getNotifications()
+        ..getPrescriptions()
+        ..getReports()
+        ..getHealthRateReadings(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Cura App',

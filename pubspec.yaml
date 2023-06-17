@@ -21,6 +21,7 @@ dependencies:
   bloc: ^8.1.1
   motion_toast: ^2.6.7
   fluttericon: ^2.0.0
+  carousel_slider: ^4.2.1
 
 
 
@@ -40,7 +41,9 @@ flutter:
 
 
   assets:
-    - assets/
+    - assets/images/
+    - assets/images/emotions/
+    - assets/images/readings/
 
   fonts:
     - family: MyFlutterApp

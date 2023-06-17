@@ -4,7 +4,11 @@ import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:virtual_hospital_ward_app/layout/cubit/cubit.dart';
 import 'package:virtual_hospital_ward_app/layout/cubit/states.dart';
-
+import 'package:virtual_hospital_ward_app/modules/reports/reports_screen.dart';
+import '../modules/Prescriptions/prescriptions_screen.dart';
+import '../modules/general_advice.dart';
+import '../modules/notifications/notifications_screen.dart';
+import '../modules/vital_readings/health_rate_screen.dart';
 import '../shared/components/general_components.dart';
 import '../shared/components/home_component.dart';
 import '../shared/constants.dart';
@@ -40,7 +44,7 @@ class AppLayout extends StatelessWidget {
                     )),
                 IconButton(
                   onPressed: () {
-                    navigateTo(context, Container());
+                    navigateTo(context, NotificationsScreen());
                   },
                   icon: const Icon(MyFlutterApp.notification_icon),
                   color: Colors.black,
@@ -97,7 +101,7 @@ class AppLayout extends StatelessWidget {
                             image: AppImages.emotion2,
                             color: AppColors.myLightGreen,
                             function: () {
-                              navigateTo(context, Container());
+                              navigateTo(context, const HealthRateScreen());
                             },
                           ),
                           SizedBox(
@@ -119,7 +123,7 @@ class AppLayout extends StatelessWidget {
                             image: AppImages.emotion3,
                             color: AppColors.myDeepOrange,
                             function: () {
-                              navigateTo(context, Container());
+                              navigateTo(context, const ReportsScreen());
                             },
                           ),
                           SizedBox(
@@ -132,7 +136,7 @@ class AppLayout extends StatelessWidget {
                             image: AppImages.emotion4,
                             color: AppColors.myBabyBlue,
                             function: () {
-                              navigateTo(context, Container());
+                              navigateTo(context, const PrescriptionsScreen());
                             },
                           ),
                           SizedBox(
@@ -145,7 +149,7 @@ class AppLayout extends StatelessWidget {
                             image: AppImages.emotion5,
                             color: AppColors.myBrown,
                             function: () {
-                              navigateTo(context, Container());
+                              navigateTo(context, GeneralAdviceScreen());
                             },
                           ),
                           SizedBox(

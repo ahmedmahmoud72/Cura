@@ -1,10 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:virtual_hospital_ward_app/network/local/cache_helper.dart';
 
 class AppEndPoints {
-  static String baseURL = 'https://student.valuxapps.com/api/';
-
-  static const login = 'login';
+  static String baseURL = 'http://www.cur.somee.com';
+  static const login = '/api/Account/login';
+  static const notification = '/Api/Notification';
+  static const prescription = '/api/Prescription/prescription/2';
+  static const reports = '/api/Report/GetAllReports';
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+String token = CacheHelper.getData(key: 'token');
 
 class AppColors {
   static MaterialColor mainColor = const MaterialColor(0xff262B63, <int, Color>{

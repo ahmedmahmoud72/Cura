@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "576624886934",
+    "project_id": "cura-ac09c",
+    "storage_bucket": "cura-ac09c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576624886934:android:762f26ed617d89e09e2eb7",
+        "android_client_info": {
+          "package_name": "com.example.simple_calculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576624886934-2p8qhs5hsu34phgre1osb324lkbmpqs4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrtdef_XJks2QrnfFo6QyQghzZ5flqnzQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576624886934-2p8qhs5hsu34phgre1osb324lkbmpqs4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576624886934:android:7b77b0833ad815959e2eb7",
+        "android_client_info": {
+          "package_name": "com.example.virtual_hospital_ward_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576624886934-2p8qhs5hsu34phgre1osb324lkbmpqs4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrtdef_XJks2QrnfFo6QyQghzZ5flqnzQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576624886934-2p8qhs5hsu34phgre1osb324lkbmpqs4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

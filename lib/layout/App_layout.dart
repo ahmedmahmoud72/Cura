@@ -6,8 +6,10 @@ import 'package:virtual_hospital_ward_app/layout/cubit/cubit.dart';
 import 'package:virtual_hospital_ward_app/layout/cubit/states.dart';
 import 'package:virtual_hospital_ward_app/modules/reports/reports_screen.dart';
 import '../modules/Prescriptions/prescriptions_screen.dart';
-import '../modules/general_advice.dart';
+import '../modules/chat/online_doctors_screen.dart';
+import '../modules/general_advice/general_advice.dart';
 import '../modules/notifications/notifications_screen.dart';
+import '../modules/readings/reading_screen.dart';
 import '../modules/vital_readings/health_rate_screen.dart';
 import '../shared/components/general_components.dart';
 import '../shared/components/home_component.dart';
@@ -36,7 +38,7 @@ class AppLayout extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () {
-                      navigateTo(context, Container());
+                      navigateTo(context, const ChatScreen());
                     },
                     icon: const Icon(
                       MyFlutterApp.comment_empty,
@@ -201,7 +203,7 @@ class AppLayout extends StatelessWidget {
                   heroTag: "btn2",
                   backgroundColor: AppColors.myRed,
                   onPressed: () {
-                    navigateTo(context, Container());
+                    navigateTo(context, const ReadingsScreen());
                   },
                   child: const Icon(FontAwesome5.hand_holding_medical),
                 ),

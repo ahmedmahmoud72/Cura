@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:virtual_hospital_ward_app/modules/readings/readings_instruction_screen.dart';
+import 'package:virtual_hospital_ward_app/shared/components/widgets/main_button.dart';
+
 import '../../shared/components/custom_app_bar.dart';
 import '../../shared/components/general_components.dart';
-import '../../shared/components/widgets/main_button.dart';
+
 
 class ReadingsScreen extends StatelessWidget {
   const ReadingsScreen({Key? key}) : super(key: key);
@@ -36,7 +39,7 @@ class ReadingsScreen extends StatelessWidget {
               MainButton(
                 text: 'Start Take Readings !',
                 onTap: () {
-                  navigateTo(context, Container());
+                  navigateTo(context, const ReadingInstructionScreen());
                 },
               ),
               Image.asset(

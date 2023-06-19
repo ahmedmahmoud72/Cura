@@ -66,4 +66,20 @@ class AppCubit extends Cubit<AppStates> {
       emit(GetHealthRateReadingsErrorState());
     }
   }
+
+  // OnlineDoctorsModel? onlineDoctorsModel;
+  //
+  // void getOnlineDoctors() {
+  //   emit(GetOnlineDoctorLoadingState());
+  //   DioHelper.getData(
+  //     url: AppEndPoints.onlineDoctors,
+  //     token: authorization,
+  //   ).then((value) {
+  //     onlineDoctorsModel = OnlineDoctorsModel.fromJson(value.data);
+  //     emit(GetOnlineDoctorSuccessState());
+  //   }).catchError((error) {
+  //     print(error.toString());
+  //     emit(GetOnlineDoctorErrorState());
+  //   });
+  // }
 }

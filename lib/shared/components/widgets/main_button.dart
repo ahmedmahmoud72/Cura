@@ -3,23 +3,29 @@ import 'package:flutter/material.dart';
 class MainButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
+  Color? color;
+  double height;
+  double weight;
 
-  const MainButton({
+  MainButton({
     Key? key,
     required this.text,
     required this.onTap,
+    this.color,
+    this.height = 200.0,
+    this.weight = 50.0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: double.infinity,
-        height: 50.0,
+        width: height,
+        height: weight,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: color,
             ),
             onPressed: onTap,
             child: Text(

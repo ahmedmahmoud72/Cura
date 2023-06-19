@@ -7,26 +7,14 @@ class AppEndPoints {
   static const notification = '/Api/Notification';
   static const prescription = '/api/Prescription/prescription/2';
   static const reports = '/api/Report/GetAllReports';
+  static const onlineDoctors = '/Api/Doctor/getOnlineDoctors';
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const kLogo = 'assets/images/cura_small_logo.png';
+const kMessagesCollections = 'messages';
+const kMessage = 'message';
+const kCreatedAt = 'createdAt';
 
 String token = CacheHelper.getData(key: 'token');
 

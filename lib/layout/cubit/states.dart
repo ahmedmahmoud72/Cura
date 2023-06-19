@@ -27,4 +27,8 @@ class GetHealthRateReadingsSuccessState extends AppStates {
 }
 class GetHealthRateReadingsErrorState extends AppStates {}
 
+class GetOnlineDoctorLoadingState extends AppStates {}
+class GetOnlineDoctorSuccessState extends AppStates {
 
+}
+class GetOnlineDoctorErrorState extends AppStates {}

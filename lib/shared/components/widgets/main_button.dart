@@ -12,15 +12,15 @@ class MainButton extends StatelessWidget {
     required this.text,
     required this.onTap,
     this.color,
-    this.height = 200.0,
-    this.weight = 50.0,
+    this.height = 50.0,
+    this.weight = 200.0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: height,
-        height: weight,
+        width: weight,
+        height: height,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: ElevatedButton(

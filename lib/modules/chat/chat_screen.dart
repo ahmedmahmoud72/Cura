@@ -6,6 +6,8 @@ import '../../models/chat_model.dart';
 import '../../shared/components/general_components.dart';
 import '../../shared/components/widgets/chat_buble.dart';
 import '../../shared/constants.dart';
+import '../call/audio_call_screen.dart';
+import '../call/video_call_screen.dart';
 
 class ChatPage extends StatelessWidget {
   static String id = 'ChatPage';
@@ -50,7 +52,7 @@ class ChatPage extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 10.0),
                       child: Stack(children: [
                         const CircleAvatar(
-                          radius: 25.0,
+                          radius: 20.0,
                           backgroundImage:
                               AssetImage('assets/images/doctor.jpg'),
                         ),
@@ -75,19 +77,49 @@ class ChatPage extends StatelessWidget {
                           'Ahmed Mahmoud',
                           style: GoogleFonts.notoSans().copyWith(
                               color: Colors.black,
-                              fontSize: 16.0,
+                              fontSize: 13.0,
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Online',
                           style: GoogleFonts.notoSans()
-                              .copyWith(color: Colors.grey, fontSize: 13.0),
+                              .copyWith(color: Colors.grey, fontSize: 10.0),
                         ),
                       ],
                     )
                   ],
                 ),
               ),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const VideoCallScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.video_call,
+                  ),
+                  color: AppColors.mainColor,
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AudioCallScreen(),
+                      ),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.phone,
+                    color: AppColors.mainColor,
+                  ),
+                ),
+              ],
             ),
             body: Column(
               children: [
@@ -123,9 +155,27 @@ class ChatPage extends StatelessWidget {
                     },
                     decoration: InputDecoration(
                       hintText: 'Send Message',
-                      suffixIcon: Icon(
-                        Icons.send,
-                        color: AppColors.mainColor,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          final message = controller.text;
+                          if (message.isNotEmpty) {
+                            messages.add({
+                              kMessage: message,
+                              kCreatedAt: DateTime.now(),
+                              'id': email,
+                            });
+                            controller.clear();
+                            _controller.animateTo(
+                              0,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeIn,
+                            );
+                          }
+                        },
+                        icon: Icon(
+                          Icons.send,
+                          color: AppColors.mainColor,
+                        ),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),

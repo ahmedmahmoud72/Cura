@@ -123,6 +123,7 @@ class LoginScreen extends StatelessWidget {
                                     child: CircularProgressIndicator()),
                                 condition: state is! AppLoginLoadingState,
                                 builder: (context) => MainButton(
+                                  weight: double.infinity,
                                       onTap: () {
                                         if (formKey.currentState!.validate()) {
                                           AppLoginCubit.get(context)

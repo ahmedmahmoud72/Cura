@@ -29,6 +29,9 @@ dependencies:
   percent_indicator: ^4.2.3
   smooth_page_indicator: ^1.1.0
   intl: ^0.18.1
+  permission_handler: ^10.3.0
+  agora_rtc_engine: ^6.2.0
+
 
 
 
